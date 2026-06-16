@@ -201,7 +201,7 @@ print(f"  Silhouette DBSCAN   : {sil_db:.4f}  (excluindo ruído)")
 import matplotlib.cm as cm
 unique_labels = sorted(set(db_labels))
 n_total       = len(unique_labels)
-cmap_db       = cm.get_cmap('tab10', n_total)
+cmap_db       = plt.get_cmap('tab10', n_total)
 color_map_db  = {lbl: ('lightgray' if lbl == -1 else cmap_db(i))
                  for i, lbl in enumerate(unique_labels)}
 
