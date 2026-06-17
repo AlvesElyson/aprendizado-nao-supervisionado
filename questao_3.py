@@ -1,6 +1,5 @@
 """
 Questão 3 – Clusterização com K-Means e Escolha do Melhor K
-Dataset: New York City Airbnb Open Data (AB_NYC_2019.csv)
 
 Atributos selecionados:
     latitude, longitude, log_price, availability_365,
@@ -181,12 +180,11 @@ for k_val, sil in zip(ks, sil_scores):
 plt.tight_layout()
 plt.savefig("q3_fig1_cotovelo_silhouette.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("\n[Salvo] q3_fig1_cotovelo_silhouette.png")
 
 # ─────────────────────────────────────────────
 # 7. Escolha do melhor K
 # ─────────────────────────────────────────────
-BEST_K = 5   # explicado abaixo
+BEST_K = 5
 
 print(f"""
 ── 7. ESCOLHA DO MELHOR K ──────────────────────────────────
@@ -245,7 +243,6 @@ ax.legend(handles=handles, title="Cluster", markerscale=4)
 plt.tight_layout()
 plt.savefig("q3_fig2_clusters_geo.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q3_fig2_clusters_geo.png")
 
 # ── FIGURA 3 – log_price × availability_365 colorido por cluster
 fig, ax = plt.subplots(figsize=(10, 7))
@@ -264,7 +261,6 @@ ax.legend(handles=handles, title="Cluster")
 plt.tight_layout()
 plt.savefig("q3_fig3_clusters_price_avail.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q3_fig3_clusters_price_avail.png")
 
 # ── FIGURA 4 – Perfil médio dos clusters (heatmap normalizado)
 cluster_profile = df_model.groupby('cluster')[FEATURES].mean()
@@ -283,7 +279,6 @@ ax.set_ylabel("Cluster")
 plt.tight_layout()
 plt.savefig("q3_fig4_perfil_clusters.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q3_fig4_perfil_clusters.png")
 
 # ─────────────────────────────────────────────
 # Crosstab: clusters × neighbourhood_group
@@ -336,7 +331,6 @@ axes[1].set_ylabel("Cluster")
 plt.tight_layout()
 plt.savefig("q3_fig5_crosstab_heatmap.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q3_fig5_crosstab_heatmap.png")
 
 # ─────────────────────────────────────────────
 # Interpretação final

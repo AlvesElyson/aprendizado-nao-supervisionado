@@ -1,6 +1,5 @@
 """
 Questão 2 – Análise Visual com Dois Atributos
-Dataset: New York City Airbnb Open Data (AB_NYC_2019.csv)
 
 Atributos escolhidos: price  ×  availability_365
 Variável de referência (cor): room_type / neighbourhood_group
@@ -80,7 +79,7 @@ palette_ng = {
 }
 
 # ─────────────────────────────────────────────────────────────
-# FIGURA 1 – Dispersão simples (sem cor)
+# FIGURA 1 – Dispersão simples
 # ─────────────────────────────────────────────────────────────
 fig, ax = plt.subplots(figsize=(9, 6))
 ax.scatter(df_clean['availability_365'], df_clean['price'],
@@ -92,7 +91,6 @@ ax.set_ylabel("Preço (US$)")
 plt.tight_layout()
 plt.savefig("q2_fig1_dispersao_simples.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q2_fig1_dispersao_simples.png")
 
 # ─────────────────────────────────────────────────────────────
 # FIGURA 2 – Dispersão colorida por room_type (escala original)
@@ -112,7 +110,6 @@ ax.legend(handles=handles, title="Tipo de Quarto", loc='upper right', fontsize=1
 plt.tight_layout()
 plt.savefig("q2_fig2_cor_roomtype.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q2_fig2_cor_roomtype.png")
 
 # ─────────────────────────────────────────────────────────────
 # FIGURA 3 – Dispersão log(price) × availability por room_type
@@ -132,7 +129,6 @@ ax.legend(handles=handles, title="Tipo de Quarto", loc='upper right', fontsize=1
 plt.tight_layout()
 plt.savefig("q2_fig3_log_roomtype.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q2_fig3_log_roomtype.png")
 
 # ─────────────────────────────────────────────────────────────
 # FIGURA 4 – Dispersão colorida por neighbourhood_group
@@ -152,7 +148,6 @@ ax.legend(handles=handles, title="Bairro", loc='upper right', fontsize=10)
 plt.tight_layout()
 plt.savefig("q2_fig4_cor_bairro.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q2_fig4_cor_bairro.png")
 
 # ─────────────────────────────────────────────────────────────
 # FIGURA 5 – KDE 2D (densidade)
@@ -168,7 +163,6 @@ ax.set_ylabel("log(Price + 1)")
 plt.tight_layout()
 plt.savefig("q2_fig5_kde.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q2_fig5_kde.png")
 
 # ─────────────────────────────────────────────────────────────
 # FIGURA 6 – Medianas por grupo (barras agrupadas)
@@ -200,7 +194,6 @@ axes[1].set_title("Por Bairro"); axes[1].legend()
 plt.tight_layout()
 plt.savefig("q2_fig6_medianas.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q2_fig6_medianas.png")
 
 # ─────────────────────────────────────────────────────────────
 # 3. Análise crítica (impressa no console)
@@ -249,10 +242,10 @@ print("""
 ║    a complexidade do dataset.                                ║
 ║                                                              ║
 ║  • SERÃO NECESSÁRIOS MAIS ATRIBUTOS nas próximas etapas:     ║
-║    – latitude/longitude: para separação geográfica          ║
-║    – number_of_reviews: popularidade e atividade            ║
+║    – latitude/longitude: para separação geográfica           ║
+║    – number_of_reviews: popularidade e atividade             ║
 ║    – calculated_host_listings_count: perfil do anfitrião     ║
-║    – room_type codificada: diferença fundamental de preço   ║
+║    – room_type codificada: diferença fundamental de preço    ║
 ║                                                              ║
 ║    A combinação desses 6–7 atributos (com normalização e     ║
 ║    redução de assimetria) tende a gerar clusters mais        ║

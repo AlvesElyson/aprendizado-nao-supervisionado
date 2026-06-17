@@ -1,7 +1,6 @@
 """
 Questão 7 – Redução de Dimensionalidade com PCA e Comparação
            em Classificação Supervisionada
-Dataset: New York City Airbnb Open Data (AB_NYC_2019.csv)
 
 Variável-alvo: neighbourhood_group (5 classes geográficas)
 Atributos de entrada: latitude, longitude, log_price,
@@ -162,7 +161,6 @@ for i, v in enumerate(cumulative * 100):
 plt.tight_layout()
 plt.savefig("q7_fig1_pca_variancia.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q7_fig1_pca_variancia.png")
 
 # ── FIGURA 2 – Biplot PCA (PC1 × PC2) colorido pela variável-alvo
 pca_2d   = PCA(n_components=2, random_state=RANDOM_STATE)
@@ -206,7 +204,6 @@ ax.legend(handles=handles, title="Bairro", markerscale=4)
 plt.tight_layout()
 plt.savefig("q7_fig2_biplot_pca.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q7_fig2_biplot_pca.png")
 
 # ─────────────────────────────────────────────
 # 4–5. Divisão treino/teste e classificadores
@@ -324,7 +321,6 @@ for ax, metric in zip(axes.flatten(), metric_cols):
 plt.tight_layout()
 plt.savefig("q7_fig3_metricas_comparativo.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q7_fig3_metricas_comparativo.png")
 
 # ─────────────────────────────────────────────
 # FIGURA 4 – Matrizes de confusão (KNN original × PCA)
@@ -353,7 +349,6 @@ for ax, key, title in zip(
 plt.tight_layout()
 plt.savefig("q7_fig4_confusao_knn.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q7_fig4_confusao_knn.png")
 
 # ─────────────────────────────────────────────
 # FIGURA 5 – Matrizes de confusão (Random Forest)
@@ -380,7 +375,6 @@ for ax, key, title in zip(
 plt.tight_layout()
 plt.savefig("q7_fig5_confusao_rf.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q7_fig5_confusao_rf.png")
 
 # ─────────────────────────────────────────────
 # FIGURA 6 – Heatmap geral de métricas
@@ -407,7 +401,6 @@ axes[1].set_xlabel(""); axes[1].set_ylabel("")
 plt.tight_layout()
 plt.savefig("q7_fig6_heatmap_metricas.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q7_fig6_heatmap_metricas.png")
 
 # ─────────────────────────────────────────────
 # Relatório detalhado KNN (melhor modelo)

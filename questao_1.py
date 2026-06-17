@@ -1,6 +1,6 @@
 """
 Questão 1 – Análise Exploratória dos Dados
-Dataset: New York City Airbnb Open Data (AB_NYC_2019.csv)
+Dataset: New York City Airbnb Open Data
 """
 
 import pandas as pd
@@ -109,9 +109,8 @@ for ax, col in zip(axes.flatten(), feat_cols):
             fontsize=8, color="firebrick")
 
 plt.tight_layout()
-plt.savefig("fig1_distribuicoes.png", dpi=150, bbox_inches="tight")
+plt.savefig("q1_fig1_distribuicoes.png", dpi=150, bbox_inches="tight")
 plt.show()
-print("\n[Salvo] fig1_distribuicoes.png")
 
 # ── Fig 2: Distribuição geográfica – Latitude × Longitude por neighbourhood_group
 fig, ax = plt.subplots(figsize=(10, 8))
@@ -127,9 +126,8 @@ ax.set_xlabel("Longitude")
 ax.set_ylabel("Latitude")
 ax.legend(title="Bairro", markerscale=4)
 plt.tight_layout()
-plt.savefig("fig2_mapa_bairros.png", dpi=150, bbox_inches="tight")
+plt.savefig("q1_fig2_mapa_bairros.png", dpi=150, bbox_inches="tight")
 plt.show()
-print("[Salvo] fig2_mapa_bairros.png")
 
 # ── Fig 3: Variáveis categóricas
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
@@ -152,9 +150,8 @@ for i, v in enumerate(vc_rt.values):
     axes[1].text(i, v + 200, f"{v:,}", ha="center", fontsize=9)
 
 plt.tight_layout()
-plt.savefig("fig3_categoricas.png", dpi=150, bbox_inches="tight")
+plt.savefig("q1_fig3_categoricas.png", dpi=150, bbox_inches="tight")
 plt.show()
-print("[Salvo] fig3_categoricas.png")
 
 # ── Fig 4: Boxplots de preço por bairro e tipo de quarto
 fig, axes = plt.subplots(1, 2, figsize=(14, 6))
@@ -177,9 +174,8 @@ axes[1].set_xlabel("")
 axes[1].set_ylabel("Preço (US$)")
 
 plt.tight_layout()
-plt.savefig("fig4_boxplot_preco.png", dpi=150, bbox_inches="tight")
+plt.savefig("q1_fig4_boxplot_preco.png", dpi=150, bbox_inches="tight")
 plt.show()
-print("[Salvo] fig4_boxplot_preco.png")
 
 # ── Fig 5: Matriz de correlação
 print("\nCalculando matriz de correlação...")
@@ -191,9 +187,8 @@ sns.heatmap(corr, mask=mask, annot=True, fmt=".2f", cmap="RdBu_r",
             center=0, linewidths=0.5, ax=ax, vmin=-1, vmax=1)
 ax.set_title("Matriz de Correlação – Atributos Numéricos", fontsize=14, fontweight="bold")
 plt.tight_layout()
-plt.savefig("fig5_correlacao.png", dpi=150, bbox_inches="tight")
+plt.savefig("q1_fig5_correlacao.png", dpi=150, bbox_inches="tight")
 plt.show()
-print("[Salvo] fig5_correlacao.png")
 
 # ── Fig 6: Análise de valores ausentes – reviews_per_month × number_of_reviews
 fig, ax = plt.subplots(figsize=(8, 5))
@@ -205,9 +200,8 @@ ax.set_xlabel("Número de avaliações")
 ax.set_ylabel("Frequência")
 ax.legend()
 plt.tight_layout()
-plt.savefig("fig6_ausentes_reviews.png", dpi=150, bbox_inches="tight")
+plt.savefig("q1_fig6_ausentes_reviews.png", dpi=150, bbox_inches="tight")
 plt.show()
-print("[Salvo] fig6_ausentes_reviews.png")
 
 # ─────────────────────────────────────────────
 # 6. Interpretação e achados principais

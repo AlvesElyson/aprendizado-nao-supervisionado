@@ -134,7 +134,6 @@ for ax, method in zip(axes, LINKAGE_METHODS):
 plt.tight_layout()
 plt.savefig("q6_fig1_dendrogramas.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q6_fig1_dendrogramas.png")
 
 # ─────────────────────────────────────────────
 # 5. Análise do dendrograma – corte e sugestão de K
@@ -185,7 +184,6 @@ ax.legend(fontsize=11)
 plt.tight_layout()
 plt.savefig("q6_fig2_dendrograma_corte.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q6_fig2_dendrograma_corte.png")
 
 # ─────────────────────────────────────────────
 # 4. Aplicar AgglomerativeClustering nos 3 métodos
@@ -246,7 +244,6 @@ ax.legend(title="Método de Ligação")
 plt.tight_layout()
 plt.savefig("q6_fig3_silhouette_hierarquico.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q6_fig3_silhouette_hierarquico.png")
 
 # ─────────────────────────────────────────────
 # Melhor configuração hierárquica
@@ -286,7 +283,6 @@ ax.legend(handles=handles, title="Cluster", markerscale=4)
 plt.tight_layout()
 plt.savefig("q6_fig4_mapa_hierarquico.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q6_fig4_mapa_hierarquico.png")
 
 # ─────────────────────────────────────────────
 # FIGURA 5 – Dispersão log_price × availability
@@ -308,7 +304,6 @@ ax.legend(handles=handles, title="Cluster")
 plt.tight_layout()
 plt.savefig("q6_fig5_dispersao_hierarquico.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q6_fig5_dispersao_hierarquico.png")
 
 # ─────────────────────────────────────────────
 # Crosstab hierárquico × neighbourhood_group
@@ -352,7 +347,6 @@ axes[1].set_xlabel("Tipo"); axes[1].set_ylabel("Cluster")
 plt.tight_layout()
 plt.savefig("q6_fig6_crosstab_hierarquico.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q6_fig6_crosstab_hierarquico.png")
 
 # ─────────────────────────────────────────────
 # 7. Comparação hierárquico × K-Means
@@ -363,9 +357,9 @@ print(f"""
   ╔══════════════════════════╦══════════════════════╦══════════════════════════╗
   ║ Critério                 ║ K-Means (K=5)        ║ Hierárquico ({best_key[:8]:8s}) ║
   ╠══════════════════════════╬══════════════════════╬══════════════════════════╣
-  ║ K utilizado              ║ 5                    ║ {best_k}                    ║
-  ║ Silhouette Score         ║ ~0.35–0.40           ║ {best_sil:.4f}               ║
-  ║ Dendrograma sugere K     ║ —                    ║ {K_DENDRO}                    ║
+  ║ K utilizado              ║ 5                    ║ {best_k}                 ║
+  ║ Silhouette Score         ║ ~0.35–0.40           ║ {best_sil:.4f}           ║
+  ║ Dendrograma sugere K     ║ —                    ║ {K_DENDRO}               ║
   ║ Necessita K a priori     ║ Sim                  ║ Não (dendrograma)        ║
   ║ Escalabilidade           ║ Alta (O(n·K·i))      ║ Baixa (O(n²) memória)    ║
   ║ Reprodutibilidade        ║ Determinístico*      ║ Determinístico           ║

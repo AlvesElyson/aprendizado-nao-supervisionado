@@ -1,6 +1,5 @@
 """
 Questão 4 – Comparação entre K-Means e DBSCAN
-Dataset: New York City Airbnb Open Data (AB_NYC_2019.csv)
 
 Mesmo conjunto de atributos da Q3:
     latitude, longitude, log_price, availability_365,
@@ -128,7 +127,6 @@ ax.legend()
 plt.tight_layout()
 plt.savefig("q4_fig1_kdistances.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q4_fig1_kdistances.png")
 
 # Arredondamos eps para um valor limpo próximo ao cotovelo
 EPS = round(eps_estimated, 2)
@@ -242,7 +240,6 @@ axes[1].legend(handles=handles_db, markerscale=4, fontsize=9)
 plt.tight_layout()
 plt.savefig("q4_fig2_geo_comparacao.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q4_fig2_geo_comparacao.png")
 
 # ── FIGURA 3 – log_price × availability (K-Means × DBSCAN)
 fig, axes = plt.subplots(1, 2, figsize=(16, 6))
@@ -272,7 +269,6 @@ axes[1].legend(handles=handles_db, fontsize=9)
 plt.tight_layout()
 plt.savefig("q4_fig3_price_avail_comparacao.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q4_fig3_price_avail_comparacao.png")
 
 # ── FIGURA 4 – Distribuição de tamanho dos clusters
 fig, axes = plt.subplots(1, 2, figsize=(13, 5))
@@ -300,7 +296,6 @@ for i, v in enumerate(db_counts.values):
 plt.tight_layout()
 plt.savefig("q4_fig4_tamanho_clusters.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q4_fig4_tamanho_clusters.png")
 
 # ── Crosstabs DBSCAN
 print("\n── CROSSTAB DBSCAN × NEIGHBOURHOOD_GROUP ───────────────────")
@@ -342,7 +337,6 @@ axes[1].set_xlabel("Tipo"); axes[1].set_ylabel("Cluster (−1=ruído)")
 plt.tight_layout()
 plt.savefig("q4_fig5_crosstab_dbscan.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q4_fig5_crosstab_dbscan.png")
 
 # ─────────────────────────────────────────────
 # 7. Tabela comparativa e conclusão

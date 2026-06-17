@@ -1,6 +1,5 @@
 """
 Questão 5 – Impacto da Normalização na Clusterização
-Dataset: New York City Airbnb Open Data (AB_NYC_2019.csv)
 
 Cenários comparados:
     1. Sem normalização (dados brutos)
@@ -199,7 +198,6 @@ for ax, (name, res), color in zip(axes.flatten(), results.items(), colors):
 plt.tight_layout()
 plt.savefig("q5_fig2_silhouette_cenarios.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q5_fig2_silhouette_cenarios.png")
 
 # ─────────────────────────────────────────────
 # FIGURA 3 – Resumo comparativo (barras)
@@ -231,7 +229,6 @@ for bar, v in zip(bars1, best_sils):
 plt.tight_layout()
 plt.savefig("q5_fig3_resumo_comparativo.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q5_fig3_resumo_comparativo.png")
 
 # ─────────────────────────────────────────────
 # FIGURA 4 – Dispersão: log_price × availability
@@ -267,7 +264,6 @@ for ax, (name, res), pal in zip(axes.flatten(), results.items(), palette_list):
 plt.tight_layout()
 plt.savefig("q5_fig4_dispersao_cenarios.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q5_fig4_dispersao_cenarios.png")
 
 # ─────────────────────────────────────────────
 # FIGURA 5 – Mapa geográfico por cenário
@@ -296,7 +292,6 @@ for ax, (name, res), pal in zip(axes.flatten(), results.items(), palette_list):
 plt.tight_layout()
 plt.savefig("q5_fig5_mapa_cenarios.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q5_fig5_mapa_cenarios.png")
 
 # ─────────────────────────────────────────────
 # Crosstabs por cenário × neighbourhood_group
@@ -332,7 +327,6 @@ for ax, (name, res), cmap in zip(axes.flatten(), results.items(), cmaps):
 plt.tight_layout()
 plt.savefig("q5_fig6_crosstab_cenarios.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("[Salvo] q5_fig6_crosstab_cenarios.png")
 
 # ─────────────────────────────────────────────
 # Tabela-resumo final
