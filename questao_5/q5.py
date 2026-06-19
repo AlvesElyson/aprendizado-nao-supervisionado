@@ -37,7 +37,7 @@ plt.rcParams.update({
     "ytick.labelsize": 9,
 })
 
-DATASET_PATH = "AB_NYC_2019.csv"
+DATASET_PATH = "../dataset/AB_NYC_2019.csv"
 RANDOM_STATE = 42
 K_RANGE      = range(2, 11)
 
@@ -172,7 +172,7 @@ for ax, (name, res), color in zip(axes.flatten(), results.items(), colors):
     ax.legend(fontsize=9)
 
 plt.tight_layout()
-plt.savefig("q5_fig1_cotovelo_cenarios.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q5_fig1_cotovelo_cenarios.png", dpi=150, bbox_inches='tight')
 plt.show()
 print("\n[Salvo] q5_fig1_cotovelo_cenarios.png")
 
@@ -196,7 +196,7 @@ for ax, (name, res), color in zip(axes.flatten(), results.items(), colors):
     ax.legend(fontsize=9)
 
 plt.tight_layout()
-plt.savefig("q5_fig2_silhouette_cenarios.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q5_fig2_silhouette_cenarios.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -227,7 +227,7 @@ for bar, v in zip(bars1, best_sils):
                  f"{v:.4f}", ha='center', fontsize=10, fontweight='bold')
 
 plt.tight_layout()
-plt.savefig("q5_fig3_resumo_comparativo.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q5_fig3_resumo_comparativo.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -262,7 +262,7 @@ for ax, (name, res), pal in zip(axes.flatten(), results.items(), palette_list):
     ax.legend(handles=handles, fontsize=8, ncol=2)
 
 plt.tight_layout()
-plt.savefig("q5_fig4_dispersao_cenarios.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q5_fig4_dispersao_cenarios.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -290,7 +290,7 @@ for ax, (name, res), pal in zip(axes.flatten(), results.items(), palette_list):
     ax.legend(handles=handles, fontsize=8, markerscale=3, ncol=2)
 
 plt.tight_layout()
-plt.savefig("q5_fig5_mapa_cenarios.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q5_fig5_mapa_cenarios.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -325,7 +325,7 @@ for ax, (name, res), cmap in zip(axes.flatten(), results.items(), cmaps):
     ax.set_ylabel("Cluster")
 
 plt.tight_layout()
-plt.savefig("q5_fig6_crosstab_cenarios.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q5_fig6_crosstab_cenarios.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────

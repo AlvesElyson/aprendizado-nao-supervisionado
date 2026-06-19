@@ -31,7 +31,7 @@ plt.rcParams.update({
     "ytick.labelsize": 9,
 })
 
-DATASET_PATH  = "AB_NYC_2019.csv"
+DATASET_PATH  = "../dataset/AB_NYC_2019.csv"
 RANDOM_STATE  = 42
 BEST_K        = 5          # mesmo K escolhido na Q3
 
@@ -125,7 +125,7 @@ ax.axhline(eps_estimated, color='firebrick', linestyle='--', alpha=0.8,
            label=f"eps ≈ {eps_estimated:.3f}")
 ax.legend()
 plt.tight_layout()
-plt.savefig("q4_fig1_kdistances.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q4_fig1_kdistances.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # Arredondamos eps para um valor limpo próximo ao cotovelo
@@ -238,7 +238,7 @@ handles_db = [mpatches.Patch(color=color_map_db[l],
 axes[1].legend(handles=handles_db, markerscale=4, fontsize=9)
 
 plt.tight_layout()
-plt.savefig("q4_fig2_geo_comparacao.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q4_fig2_geo_comparacao.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ── FIGURA 3 – log_price × availability (K-Means × DBSCAN)
@@ -267,7 +267,7 @@ axes[1].set_ylabel("log(Price + 1)")
 axes[1].legend(handles=handles_db, fontsize=9)
 
 plt.tight_layout()
-plt.savefig("q4_fig3_price_avail_comparacao.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q4_fig3_price_avail_comparacao.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ── FIGURA 4 – Distribuição de tamanho dos clusters
@@ -294,7 +294,7 @@ for i, v in enumerate(db_counts.values):
     axes[1].text(i, v + 200, f"{v:,}", ha='center', fontsize=9)
 
 plt.tight_layout()
-plt.savefig("q4_fig4_tamanho_clusters.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q4_fig4_tamanho_clusters.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ── Crosstabs DBSCAN
@@ -335,7 +335,7 @@ axes[1].set_title("DBSCAN × Tipo de Quarto")
 axes[1].set_xlabel("Tipo"); axes[1].set_ylabel("Cluster (−1=ruído)")
 
 plt.tight_layout()
-plt.savefig("q4_fig5_crosstab_dbscan.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q4_fig5_crosstab_dbscan.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────

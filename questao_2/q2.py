@@ -5,6 +5,9 @@ Atributos escolhidos: price  ×  availability_365
 Variável de referência (cor): room_type / neighbourhood_group
 """
 
+from pathlib import Path
+PASTA_ATUAL = Path(__file__).parent
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,7 +26,7 @@ plt.rcParams.update({
     "ytick.labelsize": 9,
 })
 
-DATASET_PATH = "AB_NYC_2019.csv"
+DATASET_PATH = "../dataset/AB_NYC_2019.csv"
 
 # ─────────────────────────────────────────────────────────────
 # 1. Carregamento e limpeza mínima
@@ -46,7 +49,7 @@ print("""
 ╠══════════════════════════════════════════════════════════════╣
 ║  Atributo 1: price (Preço por noite – US$)                   ║
 ║    • Variável-alvo central em anúncios de hospedagem.        ║
-║    • As medianas diferem substancialmente por room_type       ║
+║    • As medianas diferem substancialmente por room_type      ║
 ║      (Entire: US$160 | Private: US$70 | Shared: US$45) e     ║
 ║      por bairro (Manhattan: US$150 vs Bronx: US$65).         ║
 ║    • Poder discriminativo natural entre segmentos.           ║
@@ -55,9 +58,9 @@ print("""
 ║    • Reflete o perfil de uso: imóvel como renda passiva      ║
 ║      (alta disponibilidade) vs. uso esporádico (baixa).      ║
 ║    • As medianas também variam por grupo:                    ║
-║      Manhattan/Brooklyn ~30-45 dias | Bronx/Staten >140.    ║
+║      Manhattan/Brooklyn ~30-45 dias | Bronx/Staten >140.     ║
 ║    • Correlação baixa com price (r ≈ 0,08), garantindo       ║
-║      que as duas dimensões são independentes e              ║
+║      que as duas dimensões são independentes e               ║
 ║      complementares para a separação visual.                 ║
 ╚══════════════════════════════════════════════════════════════╝
 """)
@@ -89,7 +92,7 @@ ax.set_title("Fig 1 — Dispersão: Price × Availability_365\n"
 ax.set_xlabel("Disponibilidade (dias/ano)")
 ax.set_ylabel("Preço (US$)")
 plt.tight_layout()
-plt.savefig("q2_fig1_dispersao_simples.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q2_fig1_dispersao_simples.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────────────────────
@@ -108,7 +111,7 @@ ax.set_ylabel("Preço (US$)")
 handles = [mpatches.Patch(color=c, label=l) for l, c in palette_rt.items()]
 ax.legend(handles=handles, title="Tipo de Quarto", loc='upper right', fontsize=10)
 plt.tight_layout()
-plt.savefig("q2_fig2_cor_roomtype.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q2_fig2_cor_roomtype.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────────────────────
@@ -127,7 +130,7 @@ ax.set_ylabel("log(Price + 1)")
 handles = [mpatches.Patch(color=c, label=l) for l, c in palette_rt.items()]
 ax.legend(handles=handles, title="Tipo de Quarto", loc='upper right', fontsize=10)
 plt.tight_layout()
-plt.savefig("q2_fig3_log_roomtype.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q2_fig3_log_roomtype.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────────────────────
@@ -146,7 +149,7 @@ ax.set_ylabel("Preço (US$)")
 handles = [mpatches.Patch(color=c, label=l) for l, c in palette_ng.items()]
 ax.legend(handles=handles, title="Bairro", loc='upper right', fontsize=10)
 plt.tight_layout()
-plt.savefig("q2_fig4_cor_bairro.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q2_fig4_cor_bairro.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────────────────────
@@ -161,7 +164,7 @@ ax.set_title("Fig 5 — Densidade 2D: log(Price+1) × Availability_365\n"
 ax.set_xlabel("Disponibilidade (dias/ano)")
 ax.set_ylabel("log(Price + 1)")
 plt.tight_layout()
-plt.savefig("q2_fig5_kde.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q2_fig5_kde.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────────────────────
@@ -192,7 +195,7 @@ axes[1].set_xticks(x2); axes[1].set_xticklabels(med_ng.index, fontsize=9, rotati
 axes[1].set_title("Por Bairro"); axes[1].legend()
 
 plt.tight_layout()
-plt.savefig("q2_fig6_medianas.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q2_fig6_medianas.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────────────────────

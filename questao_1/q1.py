@@ -3,6 +3,9 @@ Questão 1 – Análise Exploratória dos Dados
 Dataset: New York City Airbnb Open Data
 """
 
+from pathlib import Path
+PASTA_ATUAL = Path(__file__).parent
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -23,7 +26,7 @@ plt.rcParams.update({
     "ytick.labelsize": 9,
 })
 
-DATASET_PATH = "AB_NYC_2019.csv"
+DATASET_PATH = "../dataset/AB_NYC_2019.csv"
 
 # ─────────────────────────────────────────────
 # 1. Carregamento
@@ -109,7 +112,7 @@ for ax, col in zip(axes.flatten(), feat_cols):
             fontsize=8, color="firebrick")
 
 plt.tight_layout()
-plt.savefig("q1_fig1_distribuicoes.png", dpi=150, bbox_inches="tight")
+plt.savefig(PASTA_ATUAL/"q1_fig1_distribuicoes.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # ── Fig 2: Distribuição geográfica – Latitude × Longitude por neighbourhood_group
@@ -126,7 +129,7 @@ ax.set_xlabel("Longitude")
 ax.set_ylabel("Latitude")
 ax.legend(title="Bairro", markerscale=4)
 plt.tight_layout()
-plt.savefig("q1_fig2_mapa_bairros.png", dpi=150, bbox_inches="tight")
+plt.savefig(PASTA_ATUAL/"q1_fig2_mapa_bairros.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # ── Fig 3: Variáveis categóricas
@@ -150,7 +153,7 @@ for i, v in enumerate(vc_rt.values):
     axes[1].text(i, v + 200, f"{v:,}", ha="center", fontsize=9)
 
 plt.tight_layout()
-plt.savefig("q1_fig3_categoricas.png", dpi=150, bbox_inches="tight")
+plt.savefig(PASTA_ATUAL/"q1_fig3_categoricas.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # ── Fig 4: Boxplots de preço por bairro e tipo de quarto
@@ -174,7 +177,7 @@ axes[1].set_xlabel("")
 axes[1].set_ylabel("Preço (US$)")
 
 plt.tight_layout()
-plt.savefig("q1_fig4_boxplot_preco.png", dpi=150, bbox_inches="tight")
+plt.savefig(PASTA_ATUAL/"q1_fig4_boxplot_preco.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # ── Fig 5: Matriz de correlação
@@ -187,7 +190,7 @@ sns.heatmap(corr, mask=mask, annot=True, fmt=".2f", cmap="RdBu_r",
             center=0, linewidths=0.5, ax=ax, vmin=-1, vmax=1)
 ax.set_title("Matriz de Correlação – Atributos Numéricos", fontsize=14, fontweight="bold")
 plt.tight_layout()
-plt.savefig("q1_fig5_correlacao.png", dpi=150, bbox_inches="tight")
+plt.savefig(PASTA_ATUAL/"q1_fig5_correlacao.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # ── Fig 6: Análise de valores ausentes – reviews_per_month × number_of_reviews
@@ -200,7 +203,7 @@ ax.set_xlabel("Número de avaliações")
 ax.set_ylabel("Frequência")
 ax.legend()
 plt.tight_layout()
-plt.savefig("q1_fig6_ausentes_reviews.png", dpi=150, bbox_inches="tight")
+plt.savefig(PASTA_ATUAL/"q1_fig6_ausentes_reviews.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # ─────────────────────────────────────────────

@@ -33,7 +33,7 @@ plt.rcParams.update({
     "ytick.labelsize": 9,
 })
 
-DATASET_PATH = "AB_NYC_2019.csv"
+DATASET_PATH = "../dataset/AB_NYC_2019.csv"
 RANDOM_STATE = 42
 
 # ─────────────────────────────────────────────
@@ -132,7 +132,7 @@ for ax, method in zip(axes, LINKAGE_METHODS):
     ax.set_ylabel("Distância de Fusão")
 
 plt.tight_layout()
-plt.savefig("q6_fig1_dendrogramas.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q6_fig1_dendrogramas.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -182,7 +182,7 @@ ax.set_xlabel("Amostras agrupadas")
 ax.set_ylabel("Distância de Fusão")
 ax.legend(fontsize=11)
 plt.tight_layout()
-plt.savefig("q6_fig2_dendrograma_corte.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q6_fig2_dendrograma_corte.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -242,7 +242,7 @@ ax.set_ylabel("Silhouette Score")
 ax.set_xlabel("Número de Clusters")
 ax.legend(title="Método de Ligação")
 plt.tight_layout()
-plt.savefig("q6_fig3_silhouette_hierarquico.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q6_fig3_silhouette_hierarquico.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -281,7 +281,7 @@ handles = [mpatches.Patch(color=palette_h[c], label=f"Cluster {c}")
            for c in sorted(df_model['cluster_hier'].unique())]
 ax.legend(handles=handles, title="Cluster", markerscale=4)
 plt.tight_layout()
-plt.savefig("q6_fig4_mapa_hierarquico.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q6_fig4_mapa_hierarquico.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -302,7 +302,7 @@ handles = [mpatches.Patch(color=palette_h[c], label=f"Cluster {c}")
            for c in sorted(df_model['cluster_hier'].unique())]
 ax.legend(handles=handles, title="Cluster")
 plt.tight_layout()
-plt.savefig("q6_fig5_dispersao_hierarquico.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q6_fig5_dispersao_hierarquico.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -345,7 +345,7 @@ axes[1].set_title("Cluster × Tipo de Quarto")
 axes[1].set_xlabel("Tipo"); axes[1].set_ylabel("Cluster")
 
 plt.tight_layout()
-plt.savefig("q6_fig6_crosstab_hierarquico.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q6_fig6_crosstab_hierarquico.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────

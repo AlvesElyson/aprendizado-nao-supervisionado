@@ -30,7 +30,7 @@ plt.rcParams.update({
     "ytick.labelsize": 9,
 })
 
-DATASET_PATH = "AB_NYC_2019.csv"
+DATASET_PATH = "../dataset/AB_NYC_2019.csv"
 RANDOM_STATE = 42
 
 # ─────────────────────────────────────────────
@@ -178,7 +178,7 @@ for k_val, sil in zip(ks, sil_scores):
                      ha='center', fontsize=7, color='gray')
 
 plt.tight_layout()
-plt.savefig("q3_fig1_cotovelo_silhouette.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q3_fig1_cotovelo_silhouette.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -241,7 +241,7 @@ handles = [mpatches.Patch(color=palette_cl[c], label=f"Cluster {c}")
            for c in range(BEST_K)]
 ax.legend(handles=handles, title="Cluster", markerscale=4)
 plt.tight_layout()
-plt.savefig("q3_fig2_clusters_geo.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q3_fig2_clusters_geo.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ── FIGURA 3 – log_price × availability_365 colorido por cluster
@@ -259,7 +259,7 @@ handles = [mpatches.Patch(color=palette_cl[c], label=f"Cluster {c}")
            for c in range(BEST_K)]
 ax.legend(handles=handles, title="Cluster")
 plt.tight_layout()
-plt.savefig("q3_fig3_clusters_price_avail.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q3_fig3_clusters_price_avail.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ── FIGURA 4 – Perfil médio dos clusters (heatmap normalizado)
@@ -277,7 +277,7 @@ ax.set_title(f"Fig 4 — Perfil Médio dos Clusters (K={BEST_K})\n"
 ax.set_xlabel("Atributo")
 ax.set_ylabel("Cluster")
 plt.tight_layout()
-plt.savefig("q3_fig4_perfil_clusters.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q3_fig4_perfil_clusters.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -329,7 +329,7 @@ axes[1].set_xlabel("Tipo de Quarto")
 axes[1].set_ylabel("Cluster")
 
 plt.tight_layout()
-plt.savefig("q3_fig5_crosstab_heatmap.png", dpi=150, bbox_inches='tight')
+plt.savefig("../q3_fig5_crosstab_heatmap.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
