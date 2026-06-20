@@ -11,6 +11,9 @@ Modelos testados: KNN
 Comparação: dados originais (normalizados) × dados com PCA
 """
 
+from pathlib import Path
+PASTA_ATUAL = Path(__file__).parent
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -159,7 +162,7 @@ for i, v in enumerate(cumulative * 100):
     axes[1].text(i, v + 0.8, f"{v:.1f}%", ha='center', fontsize=9)
 
 plt.tight_layout()
-plt.savefig("../q7_fig1_pca_variancia.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q7_fig1_pca_variancia.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ── FIGURA 2 – Biplot PCA (PC1 × PC2) colorido pela variável-alvo
@@ -202,7 +205,7 @@ ax.set_ylabel(f"PC2 ({explained[1]*100:.1f}%)")
 handles = [mpatches.Patch(color=c, label=l) for l, c in palette_ng.items()]
 ax.legend(handles=handles, title="Bairro", markerscale=4)
 plt.tight_layout()
-plt.savefig("../q7_fig2_biplot_pca.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q7_fig2_biplot_pca.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -319,7 +322,7 @@ for ax, metric in zip(axes.flatten(), metric_cols):
     ax.legend(title="Dados")
 
 plt.tight_layout()
-plt.savefig("../q7_fig3_metricas_comparativo.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q7_fig3_metricas_comparativo.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -347,7 +350,7 @@ for ax, key, title in zip(
     plt.setp(ax.get_yticklabels(), rotation=0,  fontsize=8)
 
 plt.tight_layout()
-plt.savefig("../q7_fig4_confusao_knn.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q7_fig4_confusao_knn.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -373,7 +376,7 @@ for ax, key, title in zip(
     plt.setp(ax.get_yticklabels(), rotation=0,  fontsize=8)
 
 plt.tight_layout()
-plt.savefig("../q7_fig5_confusao_rf.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q7_fig5_confusao_rf.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
@@ -399,7 +402,7 @@ axes[1].set_title("Acurácia")
 axes[1].set_xlabel(""); axes[1].set_ylabel("")
 
 plt.tight_layout()
-plt.savefig("../q7_fig6_heatmap_metricas.png", dpi=150, bbox_inches='tight')
+plt.savefig(PASTA_ATUAL/"q7_fig6_heatmap_metricas.png", dpi=150, bbox_inches='tight')
 plt.show()
 
 # ─────────────────────────────────────────────
