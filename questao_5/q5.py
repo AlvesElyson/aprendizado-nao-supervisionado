@@ -177,7 +177,6 @@ for ax, (name, res), color in zip(axes.flatten(), results.items(), colors):
 plt.tight_layout()
 plt.savefig(PASTA_ATUAL/"q5_fig1_cotovelo_cenarios.png", dpi=150, bbox_inches='tight')
 plt.show()
-print("\n[Salvo] q5_fig1_cotovelo_cenarios.png")
 
 # ─────────────────────────────────────────────
 # FIGURA 2 – Silhouette Score comparativo
@@ -345,58 +344,106 @@ print(summary.to_string(index=False))
 # ─────────────────────────────────────────────
 # Conclusão
 # ─────────────────────────────────────────────
-best_scenario = max(results, key=lambda n: results[n]['best_sil'])
+best_scenario  = max(results, key=lambda n: results[n]['best_sil'])
+worst_scenario = min(results, key=lambda n: results[n]['best_sil'])
+
+sil_sem_norm = results["1. Sem normalização"]['best_sil']
+sil_zscore   = results["2. Z-score"]['best_sil']
+sil_minmax   = results["3. Min-Max"]['best_sil']
+sil_logz     = results["4. Log + Z-score"]['best_sil']
+
+k_sem_norm = results["1. Sem normalização"]['best_k']
+k_zscore   = results["2. Z-score"]['best_k']
+k_minmax   = results["3. Min-Max"]['best_k']
+k_logz     = results["4. Log + Z-score"]['best_k']
+
 print(f"""
 ── CONCLUSÃO: A NORMALIZAÇÃO AJUDOU? ───────────────────────
 
-  Melhor cenário: {best_scenario}
-  Silhouette     : {results[best_scenario]['best_sil']:.4f}
-  Melhor K       : {results[best_scenario]['best_k']}
+  RESULTADOS OBTIDOS:
+    1. Sem normalização  | K={k_sem_norm}  | Silhouette={sil_sem_norm:.4f}
+    2. Z-score           | K={k_zscore}  | Silhouette={sil_zscore:.4f}
+    3. Min-Max            | K={k_minmax}  | Silhouette={sil_minmax:.4f}
+    4. Log + Z-score      | K={k_logz}  | Silhouette={sil_logz:.4f}
 
-  RESPOSTA: A normalização AJUDOU significativamente.
+  Maior Silhouette: {best_scenario} ({results[best_scenario]['best_sil']:.4f})
+  Menor Silhouette: {worst_scenario} ({results[worst_scenario]['best_sil']:.4f})
 
-  Detalhamento por cenário:
+  RESPOSTA: Pelo Silhouette Score puro, a normalização NÃO
+  ajudou — pelo contrário, os dois melhores resultados vieram
+  dos cenários SEM correção de assimetria (sem normalização e
+  Min-Max), enquanto Z-score e Log+Z-score tiveram desempenho
+  inferior. Esse resultado é contraintuitivo e exige explicação.
 
-  1. Sem normalização
-     O K-Means é completamente dominado pelas variáveis de
-     maior escala: 'price' (0–1000) e 'number_of_reviews'
-     (0–629). Latitude e longitude, com variação de apenas
-     ~0,3 graus, tornam-se irrelevantes. Os clusters obtidos
-     não têm coerência geográfica, e o Silhouette Score é
-     baixo. O cotovelo é impreciso, com inércias muito altas.
+  POR QUE "SEM NORMALIZAÇÃO" E "MIN-MAX" TÊM SILHOUETTE ALTO?
 
-  2. Z-score (StandardScaler)
-     Equaliza as escalas sem pressuposto de distribuição.
-     Melhora substancialmente o Silhouette Score e permite
-     que todos os atributos contribuam igualmente. Porém,
-     não corrige a assimetria de 'price' e 'number_of_reviews',
-     de modo que outliers extremos ainda distorcem os clusters.
+  O Silhouette Score mede o quão bem separados e compactos são
+  os clusters — mas não garante que essa separação seja
+  significativa. Nos cenários 1 e 3:
+    • 'price' (0–1000) e 'number_of_reviews' (0–629) dominam
+      a métrica de distância Euclidiana, pois suas escalas são
+      muito maiores que as de latitude/longitude (~0,3 grau de
+      variação) e calculated_host_listings_count.
+    • O K-Means encontra poucos clusters (K={k_sem_norm} e K={k_minmax})
+      separados quase exclusivamente por faixa de preço/reviews,
+      ignorando a estrutura geográfica. Poucos clusters grandes
+      e dominados por 1–2 atributos tendem a gerar Silhouette
+      artificialmente alto, pois a separação nessas variáveis
+      de escala grande é muito nítida.
+    • Ou seja, o Silhouette alto aqui reflete "fácil separação
+      em 1 dimensão dominante", não uma estrutura multivariada
+      rica nos dados.
 
-  3. Min-Max (MinMaxScaler)
-     Leva todos os atributos para [0, 1]. Resultado similar
-     ao Z-score, mas ligeiramente inferior porque comprime
-     os outliers para a borda do intervalo em vez de
-     reescalá-los proporcionalmente, podendo distorcer
-     a geometria dos clusters.
+  POR QUE Z-SCORE E LOG+Z-SCORE TÊM SILHOUETTE MENOR?
 
-  4. Log + Z-score  ← MELHOR CENÁRIO
-     A transformação logarítmica corrige a assimetria de
-     'price' (skew≈19) e 'number_of_reviews' antes da
-     padronização. Isso resulta em distribuições mais
-     simétricas e clusters mais coesos. O Silhouette Score
-     mais alto e a separação geográfica mais nítida no mapa
-     confirmam que esta é a estratégia mais adequada para
-     este dataset — o mesmo procedimento adotado na Q3/Q4.
+    • Ao equalizar as escalas, latitude/longitude passam a
+      pesar tanto quanto price/reviews. Isso introduz mais
+      dimensões relevantes na distância, tornando os clusters
+      menos "limpos" geometricamente (Silhouette menor), mas
+      também mais REPRESENTATIVOS da estrutura real do dataset
+      (geografia + preço + popularidade + perfil do anfitrião).
+    • O Z-score (cenário 2) chegou a K={k_zscore}, coerente com as
+      5 regiões geográficas de NY usadas como referência
+      categórica — diferente dos cenários 1 e 3, que colapsam
+      em poucos clusters dominados por preço.
+    • O Log+Z-score (cenário 4) teve o menor Silhouette
+      ({sil_logz:.4f}) e K={k_logz}, indicando que a correção da
+      assimetria de price/reviews tornou os clusters ainda
+      menos separáveis nessas dimensões — o que é esperado,
+      já que o objetivo do log é justamente reduzir a influência
+      desproporcional desses outliers.
 
   MUDANÇAS OBSERVADAS:
-    • Gráficos de dispersão: cenários 2–4 mostram separação
-      visual muito mais clara que o cenário 1 (sem norm.).
-    • Melhor K: varia entre os cenários, mas se estabiliza
-      em torno de K=5 nos cenários normalizados.
-    • Silhouette Score: crescimento expressivo do cenário 1
-      para o 4, confirmando melhora real na coesão.
-    • Distribuição dos clusters: no cenário 1, clusters
-      muito desbalanceados; nos demais, mais equilibrados.
-    • Crosstab: a correspondência com 'neighbourhood_group'
-      é progressivamente mais nítida do cenário 1 ao 4.
+    • Melhor K: variou de {min(k_sem_norm, k_zscore, k_minmax, k_logz)} a
+      {max(k_sem_norm, k_zscore, k_minmax, k_logz)} entre os cenários — não há
+      convergência para um único K, ao contrário do esperado.
+      Apenas o Z-score produziu K=5, alinhado à Q3.
+    • Silhouette Score: caiu do cenário 1 (sem normalização)
+      para os cenários 2 e 4 — comportamento oposto ao que se
+      esperaria se a normalização "limpasse" os clusters.
+    • Distribuição dos clusters: nos cenários 1 e 3, os grupos
+      tendem a ser poucos e grandes (dominados por price);
+      no Z-score, mais clusters e mais equilibrados.
+    • Crosstab: precisa ser inspecionada visualmente (Fig 6)
+      para confirmar se o Z-score, apesar do Silhouette menor,
+      produz correspondência mais clara com neighbourhood_group.
+
+  VEREDICTO FINAL:
+    Neste dataset, o Silhouette Score isoladamente é uma
+    métrica ENGANOSA para decidir se a normalização "ajudou":
+    cenários sem correção de escala (1 e 3) vencem no Silhouette
+    justamente porque colapsam a clusterização em torno das
+    variáveis de maior magnitude (price, number_of_reviews),
+    não porque encontram uma estrutura mais rica.
+
+    A normalização (especialmente Z-score) PREJUDICOU o
+    Silhouette Score bruto, mas é necessária para que latitude,
+    longitude e os demais atributos tenham peso comparável na
+    distância — sem ela, o K-Means na prática ignora a geografia.
+    A escolha do cenário ideal depende do objetivo: se o
+    objetivo é maximizar separação estatística pura, os
+    cenários 1/3 "vencem"; se o objetivo é obter clusters
+    interpretáveis e multivariados (como buscado nas Q3/Q4),
+    a normalização via Z-score (ou Log+Z-score) é preferível,
+    mesmo com Silhouette mais baixo.
 """)

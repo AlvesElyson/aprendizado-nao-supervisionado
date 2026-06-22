@@ -194,10 +194,22 @@ plt.savefig(PASTA_ATUAL/"q1_fig5_correlacao.png", dpi=150, bbox_inches="tight")
 plt.show()
 
 # ── Fig 6: Análise de valores ausentes – reviews_per_month × number_of_reviews
-fig, ax = plt.subplots(figsize=(8, 5))
+fig, ax = plt.subplots(figsize=(9, 5.5))
 has_review = df["reviews_per_month"].notna()
-df.groupby(has_review)["number_of_reviews"].hist(bins=40, alpha=0.6,
-    label=["Sem reviews_per_month", "Com reviews_per_month"], ax=ax)
+
+sem_review = df.loc[~has_review, "number_of_reviews"]
+com_review = df.loc[has_review, "number_of_reviews"]
+
+# Bins compartilhados: garante que as barras de cada grupo fiquem
+# lado a lado dentro do mesmo intervalo, em vez de uma sobrepor a outra
+max_val = df["number_of_reviews"].max()
+bin_edges = np.linspace(0, max_val, 41)
+
+ax.hist([sem_review, com_review], bins=bin_edges,
+        color=["#e63946", "#457b9d"], alpha=0.85,
+        label=[f"Sem reviews_per_month (n={len(sem_review):,})",
+               f"Com reviews_per_month (n={len(com_review):,})"])
+
 ax.set_title("Imóveis com e sem 'reviews_per_month' × número de avaliações")
 ax.set_xlabel("Número de avaliações")
 ax.set_ylabel("Frequência")
@@ -205,6 +217,15 @@ ax.legend()
 plt.tight_layout()
 plt.savefig(PASTA_ATUAL/"q1_fig6_ausentes_reviews.png", dpi=150, bbox_inches="tight")
 plt.show()
+
+print(f"""
+  Nota sobre a Fig 6:
+    Todos os {len(sem_review):,} imóveis SEM 'reviews_per_month' têm
+    number_of_reviews = 0 (consistente: sem avaliações, não há média
+    mensal a calcular). Por isso a barra vermelha aparece concentrada
+    inteiramente no primeiro bin, ao lado da barra azul (imóveis com
+    pelo menos 1 avaliação).
+""")
 
 # ─────────────────────────────────────────────
 # 6. Interpretação e achados principais
